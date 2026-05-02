@@ -2086,7 +2086,7 @@ const FAQ = () => {
 
   const faqs = [
     {
-      question: "Where is the venue for YLC 2024?",
+      question: "Where is the venue for YLC 2026?",
       answer: "The conference will be held at the ASUP Secretariat Complex, Federal Polytecnic Bauchi. It's easily located with ample parking and security."
     },
     {
