@@ -598,7 +598,7 @@ const Navbar = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-xl py-3 shadow-2xl border-b border-white/5' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-[90] pointer-events-auto transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-xl py-3 shadow-2xl border-b border-white/5' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
         <a href="#home" className="flex items-center space-x-3 group">
           <div className="relative w-12 h-12 flex items-center justify-center transform group-hover:scale-110 transition-transform">
@@ -641,6 +641,7 @@ const Navbar = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
           ))}
           <button
             onClick={onOpenSponsor}
+            type="button"
             className="text-sm font-black uppercase tracking-widest text-white/40 hover:text-white transition-colors"
           >
             PARTNER
@@ -654,7 +655,12 @@ const Navbar = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+        <button
+          type="button"
+          aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          className="md:hidden text-white p-3 rounded-full hover:bg-white/10 transition-colors"
+          onClick={() => setIsOpen(!isOpen)}
+        >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
