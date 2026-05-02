@@ -47,7 +47,7 @@ const DonationSection = ({ onOpenDonate }: { onOpenDonate: () => void }) => {
   ];
 
   return (
-    <section id="donate" className="py-32 bg-zinc-950/50 relative overflow-hidden">
+    <section id="donate" className="scroll-mt-20 py-32 bg-zinc-950/50 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <motion.div
@@ -686,6 +686,12 @@ const Navbar = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
                   {link.name}
                 </a>
               ))}
+              <button
+                onClick={() => { setIsOpen(false); onOpenSponsor(); }}
+                className="text-2xl font-display font-bold hover:text-brand-red transition-colors text-white uppercase tracking-tighter"
+              >
+                PARTNER
+              </button>
               <a
                 href="#register"
                 onClick={() => setIsOpen(false)}
@@ -877,7 +883,7 @@ const ImageCarousel = () => {
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-10 pb-10 sm:pt-20 sm:pb-20 bg-black overflow-hidden">
+    <section id="home" className="scroll-mt-20 relative min-h-screen flex flex-col items-center justify-center pt-10 pb-10 sm:pt-20 sm:pb-20 bg-black overflow-hidden">
       <ImageCarousel />
 
       <div className="container mx-auto px-6 relative z-10 text-center">
@@ -942,7 +948,7 @@ const Hero = () => {
 
 const About = () => {
   return (
-    <section id="about" className="pt-[34px] pb-32 bg-zinc-950/50 overflow-hidden">
+    <section id="about" className="scroll-mt-20 pt-[34px] pb-32 bg-zinc-950/50 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-24 items-center">
           <motion.div
@@ -1186,7 +1192,7 @@ const Schedule = () => {
   ];
 
   return (
-    <section id="schedule" className="py-24 bg-zinc-950">
+    <section id="schedule" className="scroll-mt-20 py-24 bg-zinc-950">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0 }}
@@ -1266,7 +1272,7 @@ const Speakers = () => {
   ];
 
   return (
-    <section id="speakers" className="py-32 relative overflow-hidden bg-black">
+    <section id="speakers" className="scroll-mt-20 py-32 relative overflow-hidden bg-black">
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[300px] h-[300px] bg-brand-red/10 blur-[100px] rounded-full -z-10" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-brand-purple/5 blur-[120px] rounded-full -z-10" />
 
