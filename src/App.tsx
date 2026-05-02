@@ -227,7 +227,7 @@ const DonationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
                       </div>
                       <div>
                         <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.4em] mb-2">Official Beneficiary</p>
-                        <p className="text-white font-black text-[15px] tracking-tight">QUINTESSENTIAL LEAD</p>
+                        <p className="text-white font-black text-[13px] tracking-tight">QUINTESSENTIAL LEAD</p>
                       </div>
                     </div>
                   </div>
