@@ -2002,7 +2002,7 @@ const MainStageModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
                   <div className="absolute bottom-8 left-8 right-8 flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                       <div className="w-10 h-10 rounded-full border-2 border-brand-red overflow-hidden">
-                        <img src="/img/Jerry.jpeg" alt="Speaker" className="w-full h-full object-cover" />
+                        <img src="https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679817/img/Jerry_ehydf2.jpg" alt="Speaker" className="w-full h-full object-cover" />
                       </div>
                       <div>
                         <p className="text-[10px] font-black text-brand-red uppercase tracking-widest">Speaking Now</p>
