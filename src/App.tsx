@@ -606,7 +606,7 @@ const Navbar = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
             <div className="absolute inset-0 bg-brand-white rounded-xl rotate-12 opacity-80 group-hover:rotate-0 transition-transform duration-500" />
             <div className="relative z-10 w-full h-full flex items-center justify-center">
               <img
-                src="/img/logo.png"
+                src="https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777680125/logo_xinbh0.png"
                 alt="YLC"
                 className="w-8 h-8 object-contain"
                 onError={(e) => {
@@ -803,11 +803,11 @@ const Countdown = () => {
 
 const ImageCarousel = () => {
   const images = [
-    "/img/pic1.jpg",
-    "/img/pic6.jpg",
-    "/img/pic3.jpg",
-    "/img/pic4.jpg",
-    "/img/pic2.jpg"
+    "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679824/img/pic1_ujecjf.jpg",
+    "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679827/img/pic6_hbzfhv.jpg",
+    "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679825/img/pic3_kpfdde.jpg",
+    "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679825/img/pic4_os8hdh.jpg",
+    "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679825/img/pic2_nzcico.jpg"
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -989,7 +989,7 @@ const About = () => {
               <div className="space-y-6">
                 <div className="relative group overflow-hidden rounded-[32px] aspect-[4/5] shadow-2xl">
                   <img
-                    src="/img/pic2.jpg"
+                    src="https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679825/img/pic2_nzcico.jpg"
                     alt="Past YLC Highlights"
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
                   />
@@ -998,7 +998,7 @@ const About = () => {
                 </div>
                 <div className="relative group overflow-hidden rounded-[32px] aspect-square shadow-2xl">
                   <img
-                    src="/img/pic8.jpg"
+                    src="https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679827/img/pic8_hpxryu.jpg"
                     alt="Past YLC Highlights"
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
                   />
@@ -1009,7 +1009,7 @@ const About = () => {
               <div className="space-y-6 pt-0 lg:pt-12">
                 <div className="relative group overflow-hidden rounded-[32px] aspect-square shadow-2xl">
                   <img
-                    src="/img/pic9.jpg"
+                    src="https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679830/img/pic9_f9k9ef.jpg"
                     alt="Past YLC Highlights"
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
                   />
@@ -1017,7 +1017,7 @@ const About = () => {
                 </div>
                 <div className="relative group overflow-hidden rounded-[32px] aspect-[4/5] shadow-2xl">
                   <img
-                    src="/img/pic6.jpg"
+                    src="https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679827/img/pic6_hbzfhv.jpg"
                     alt="Past YLC Highlights"
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
                   />
@@ -1251,12 +1251,12 @@ const SpeakerCard = ({ name, role, image }: { name: string, role: string, image:
 
 const Speakers = () => {
   const speakers = [
-    { name: "Sir Jeremiah Panshak Kassem", role: "Guest Speaker", image: "/img/Jerry.jpeg" },
-    { name: "Mrs Elizabeth George Esq.", role: "Guest Speaker", image: "/img/Barr.jpeg" },
-    { name: "Mr Bubchong Lawi", role: "Guest Speaker", image: "/img/Lawi.jpeg" },
-    { name: "Peter James Ola", role: "Host", image: "/img/Peter.jpeg" },
-    { name: "Nuna Praise Quashe", role: "Co-Host", image: "/img/Nuna.jpeg" },
-    { name: "Luka Micah Zamani", role: "Team Lead", image: "/img/micah.jpg" },
+    { name: "Sir Jeremiah Panshak Kassem", role: "Guest Speaker", image: "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679817/img/Jerry_ehydf2.jpg" },
+    { name: "Mrs Elizabeth George Esq.", role: "Guest Speaker", image: "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679814/img/Barr_dit1un.jpg" },
+    { name: "Mr Bubchong Lawi", role: "Guest Speaker", image: "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679815/img/Lawi_ieydzp.jpg" },
+    { name: "Peter James Ola", role: "Host", image: "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679822/img/Peter_hmnivc.jpg" },
+    { name: "Nuna Praise Quashe", role: "Co-Host", image: "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679816/img/Nuna_htidta.jpg" },
+    { name: "Luka Micah Zamani", role: "Team Lead", image: "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679818/img/micah_uqzvgs.jpg" },
   ];
 
   return (
@@ -1398,8 +1398,8 @@ const Sponsors = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
   ];
 
   const allSponsors = [
-    { id: 1, name: "Future-Forward Leaders Platform", img: "/img/fflp.png" },
-    { id: 2, name: "Vision & Lenses", img: "/img/vl.png" },
+    { id: 1, name: "Future-Forward Leaders Platform", img: "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679815/img/fflp_m8ehqv.png" },
+    { id: 2, name: "Vision & Lenses", img: "https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777679827/img/vl_uuolba.png" },
     { id: 3, name: "Strategic Impact Hub", img: "/img/impact.png" },
     { id: 4, name: "Global Leadership Initiative", img: "/img/gli.png" },
     { id: 5, name: "Bauchi Tech Park", img: "/img/tech.png" },
@@ -1784,7 +1784,7 @@ const Footer = () => {
                 <div className="absolute inset-0 bg-brand-white rounded-xl rotate-12 opacity-80" />
                 <div className="relative z-10 w-full h-full flex items-center justify-center">
                   <img
-                    src="/img/logo.png"
+                    src="https://res.cloudinary.com/dxx0r7sdm/image/upload/v1777680125/logo_xinbh0.png"
                     alt="YLC"
                     className="w-8 h-8 object-contain"
                     onError={(e) => {
@@ -2171,8 +2171,8 @@ const FAQ = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 className={`group border rounded-[32px] transition-all duration-500 overflow-hidden ${openIndex === index
-                    ? "bg-white/[0.03] border-white/20 shadow-2xl shadow-brand-red/5"
-                    : "bg-transparent border-white/5 hover:border-white/10"
+                  ? "bg-white/[0.03] border-white/20 shadow-2xl shadow-brand-red/5"
+                  : "bg-transparent border-white/5 hover:border-white/10"
                   }`}
               >
                 <button
@@ -2184,8 +2184,8 @@ const FAQ = () => {
                     {faq.question}
                   </span>
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${openIndex === index
-                      ? "bg-brand-red text-white rotate-180"
-                      : "bg-white/5 text-white/30 group-hover:bg-white/10"
+                    ? "bg-brand-red text-white rotate-180"
+                    : "bg-white/5 text-white/30 group-hover:bg-white/10"
                     }`}>
                     <ChevronDown size={20} />
                   </div>
