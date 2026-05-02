@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { 
-  Calendar, 
-  Clock, 
-  MapPin, 
-  Users, 
-  Lightbulb, 
-  TrendingUp, 
-  Award, 
-  Zap, 
-  MessageSquare, 
-  ChevronRight, 
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Users,
+  Lightbulb,
+  TrendingUp,
+  Award,
+  Zap,
+  MessageSquare,
+  ChevronRight,
   ChevronLeft,
-  Menu, 
-  X, 
-  Instagram, 
-  Twitter, 
-  Facebook, 
+  Menu,
+  X,
+  Instagram,
+  Twitter,
+  Facebook,
   Linkedin,
   Phone,
   ArrowRight,
@@ -50,7 +50,7 @@ const DonationSection = ({ onOpenDonate }: { onOpenDonate: () => void }) => {
     <section id="donate" className="py-32 bg-zinc-950/50 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-16">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -64,7 +64,7 @@ const DonationSection = ({ onOpenDonate }: { onOpenDonate: () => void }) => {
             <p className="text-xl text-white/60 mt-8 max-w-xl leading-relaxed">
               Your contribution directly empowers the next generation of African leaders. Join us in building a legacy of excellence and moral leadership.
             </p>
-            
+
             <div className="mt-12 space-y-4">
               <div className="flex items-center space-x-4 p-6 rounded-2xl bg-white/5 border border-white/10">
                 <div className="w-12 h-12 rounded-xl brand-gradient flex items-center justify-center text-white">
@@ -153,15 +153,15 @@ const DonationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
             className="absolute inset-0 bg-zinc-950/95 backdrop-blur-2xl"
           />
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -171,7 +171,7 @@ const DonationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
             <div className="h-2 w-full brand-gradient" />
 
             <div className="p-8 md:p-12 text-center">
-              <button 
+              <button
                 onClick={handleClose}
                 className="absolute top-8 right-8 text-white/20 hover:text-white transition-colors z-10"
               >
@@ -204,19 +204,18 @@ const DonationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
                     <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
                       <Compass size={180} />
                     </div>
-                    
+
                     <div>
                       <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.5em] mb-3">Unique Identity</p>
                       <div className="flex items-center justify-between gap-4">
                         <p className="text-4xl md:text-5xl font-display font-black text-white tracking-[0.1em] leading-none">2253108933</p>
-                        <button 
+                        <button
                           onClick={() => handleCopy("1234567890")}
-                          className={`p-4 rounded-2xl transition-all flex items-center gap-2 font-black text-[10px] uppercase tracking-widest ${
-                            copied ? 'bg-brand-red text-white' : 'bg-white/5 hover:bg-white/10 text-white/40 hover:text-white'
-                          }`}
+                          className={`p-4 rounded-2xl transition-all flex items-center gap-2 font-black text-[10px] uppercase tracking-widest ${copied ? 'bg-brand-red text-white' : 'bg-white/5 hover:bg-white/10 text-white/40 hover:text-white'
+                            }`}
                         >
-                           {copied ? <CheckCircle size={16} /> : <Compass size={16} />}
-                           {copied ? "Copied" : "Copy"}
+                          {copied ? <CheckCircle size={16} /> : <Compass size={16} />}
+                          {copied ? "Copied" : "Copy"}
                         </button>
                       </div>
                     </div>
@@ -239,7 +238,7 @@ const DonationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
                       <p className="text-[10px] text-brand-red font-black uppercase tracking-widest">Reference: YLC2026-Impact</p>
                     </div>
 
-                    <button 
+                    <button
                       onClick={() => setConfirmed(true)}
                       className="w-full bg-white text-black py-7 rounded-[24px] font-black uppercase tracking-[0.2em] text-sm hover:scale-[1.02] active:scale-95 transition-all shadow-2xl hover:bg-brand-red hover:text-white"
                     >
@@ -254,8 +253,8 @@ const DonationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
                   className="py-20"
                 >
                   <div className="relative inline-block mb-12">
-                    <motion.div 
-                      animate={{ 
+                    <motion.div
+                      animate={{
                         scale: [1, 1.2, 1],
                         rotate: [0, 10, -10, 0]
                       }}
@@ -266,7 +265,7 @@ const DonationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
                     </motion.div>
                     <div className="absolute inset-0 border-4 border-brand-red/30 rounded-full animate-ping pointer-events-none" />
                   </div>
-                  
+
                   <h3 className="text-5xl font-display font-black text-white uppercase tracking-tighter mb-6 leading-none">
                     SEEDS <br />
                     <span className="text-brand-red">PLANTED</span>
@@ -274,7 +273,7 @@ const DonationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
                   <p className="text-white/60 mb-12 text-lg font-medium leading-relaxed max-w-sm mx-auto">
                     Thank you for your generosity. Your contribution is more than a donation—it's a vote of confidence in the future.
                   </p>
-                  <button 
+                  <button
                     onClick={handleClose}
                     className="px-12 py-5 rounded-full border border-white/20 text-white font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-colors"
                   >
@@ -322,7 +321,7 @@ const SponsorshipModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
     }
     setError('');
     setIsSubmitting(true);
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
     setIsSubmitting(false);
@@ -370,22 +369,22 @@ const SponsorshipModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
             className="absolute inset-0 bg-black/90 backdrop-blur-xl"
           />
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-zinc-900 border border-white/10 rounded-[40px] shadow-[0_0_80px_rgba(234,35,42,0.15)] no-scrollbar"
           >
             <div className="h-2 w-full brand-gradient" />
-            
-            <button 
+
+            <button
               onClick={handleClose}
               className="absolute top-8 right-8 text-white/40 hover:text-white transition-colors z-10"
             >
@@ -418,13 +417,13 @@ const SponsorshipModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
                   <form className="space-y-6" onSubmit={handleSubmit}>
                     <motion.div variants={itemVariants} className="space-y-2">
                       <label className="text-[10px] font-black text-white/30 uppercase tracking-widest pl-2">Organization Name</label>
-                      <input 
-                        type="text" 
-                        placeholder="e.g. Zenith Bank PLC" 
+                      <input
+                        type="text"
+                        placeholder="e.g. Zenith Bank PLC"
                         className={`w-full bg-white/[0.03] border ${error.includes('organization') ? 'border-brand-red' : 'border-white/10'} rounded-2xl px-6 py-4 text-white placeholder-white/20 focus:outline-none focus:border-brand-red focus:bg-white/[0.05] transition-all`}
                         value={formData.company}
                         onChange={(e) => {
-                          setFormData({...formData, company: e.target.value});
+                          setFormData({ ...formData, company: e.target.value });
                           if (error.includes('organization')) setError('');
                         }}
                       />
@@ -432,13 +431,13 @@ const SponsorshipModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
 
                     <motion.div variants={itemVariants} className="space-y-2">
                       <label className="text-[10px] font-black text-white/30 uppercase tracking-widest pl-2">Contact Email</label>
-                      <input 
-                        type="email" 
-                        placeholder="partnerships@company.com" 
+                      <input
+                        type="email"
+                        placeholder="partnerships@company.com"
                         className={`w-full bg-white/[0.03] border ${error.includes('email') ? 'border-brand-red' : 'border-white/10'} rounded-2xl px-6 py-4 text-white placeholder-white/20 focus:outline-none focus:border-brand-red focus:bg-white/[0.05] transition-all`}
                         value={formData.email}
                         onChange={(e) => {
-                          setFormData({...formData, email: e.target.value});
+                          setFormData({ ...formData, email: e.target.value });
                           if (error.includes('email')) setError('');
                         }}
                       />
@@ -447,10 +446,10 @@ const SponsorshipModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
                     <motion.div variants={itemVariants} className="space-y-2">
                       <label className="text-[10px] font-black text-white/30 uppercase tracking-widest pl-2">Partnership Tier</label>
                       <div className="relative">
-                        <select 
+                        <select
                           className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-red focus:bg-white/[0.05] transition-all appearance-none cursor-pointer"
                           value={formData.interest}
-                          onChange={(e) => setFormData({...formData, interest: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
                         >
                           <option value="plat" className="bg-zinc-900">Platinum Sponsorship</option>
                           <option value="gold" className="bg-zinc-900">Gold Sponsorship</option>
@@ -466,18 +465,18 @@ const SponsorshipModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
 
                     <motion.div variants={itemVariants} className="space-y-2">
                       <label className="text-[10px] font-black text-white/30 uppercase tracking-widest pl-2">Expression of Interest</label>
-                      <textarea 
-                        placeholder="Briefly describe your goals for this partnership..." 
+                      <textarea
+                        placeholder="Briefly describe your goals for this partnership..."
                         rows={4}
                         className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-white/20 focus:outline-none focus:border-brand-red focus:bg-white/[0.05] transition-all resize-none"
                         value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       />
                     </motion.div>
 
                     <AnimatePresence>
                       {error && (
-                        <motion.div 
+                        <motion.div
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: 'auto' }}
                           exit={{ opacity: 0, height: 0 }}
@@ -491,7 +490,7 @@ const SponsorshipModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
                       )}
                     </AnimatePresence>
 
-                    <motion.button 
+                    <motion.button
                       variants={itemVariants}
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
@@ -507,7 +506,7 @@ const SponsorshipModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
                   </form>
                 </motion.div>
               ) : (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-12"
@@ -524,7 +523,7 @@ const SponsorshipModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
                   <p className="text-white/50 mb-10 text-sm font-medium leading-relaxed max-w-sm mx-auto">
                     Our strategic partnership team will review your application and reach out within 48 hours with a full proposal.
                   </p>
-                  <button 
+                  <button
                     onClick={handleClose}
                     className="w-full py-5 rounded-2xl border border-white/10 text-white font-black uppercase tracking-widest text-[10px] hover:bg-white/5 transition-colors"
                   >
@@ -603,25 +602,25 @@ const Navbar = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         <a href="#home" className="flex items-center space-x-3 group">
           <div className="relative w-12 h-12 flex items-center justify-center transform group-hover:scale-110 transition-transform">
-             {/* If logo.png exists, show it, otherwise fallback to the stylized Y */}
-             <div className="absolute inset-0 bg-brand-white rounded-xl rotate-12 opacity-80 group-hover:rotate-0 transition-transform duration-500" />
-             <div className="relative z-10 w-full h-full flex items-center justify-center">
-                <img 
-                  src="/img/logo.png" 
-                  alt="YLC" 
-                  className="w-8 h-8 object-contain" 
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const parent = e.currentTarget.parentElement;
-                    if (parent) {
-                      const fallback = document.createElement('span');
-                      fallback.className = "text-white font-black text-2xl drop-shadow-md";
-                      fallback.innerText = "Y";
-                      parent.appendChild(fallback);
-                    }
-                  }}
-                />
-             </div>
+            {/* If logo.png exists, show it, otherwise fallback to the stylized Y */}
+            <div className="absolute inset-0 bg-brand-white rounded-xl rotate-12 opacity-80 group-hover:rotate-0 transition-transform duration-500" />
+            <div className="relative z-10 w-full h-full flex items-center justify-center">
+              <img
+                src="/img/logo.png"
+                alt="YLC"
+                className="w-8 h-8 object-contain"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  const parent = e.currentTarget.parentElement;
+                  if (parent) {
+                    const fallback = document.createElement('span');
+                    fallback.className = "text-white font-black text-2xl drop-shadow-md";
+                    fallback.innerText = "Y";
+                    parent.appendChild(fallback);
+                  }
+                }}
+              />
+            </div>
           </div>
           <div className="flex flex-col">
             <span className="text-2xl font-display font-black tracking-tighter leading-none">YLC <span className="text-brand-red">6.0</span></span>
@@ -632,22 +631,22 @@ const Navbar = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
+            <a
+              key={link.name}
+              href={link.href}
               className="text-sm font-medium hover:text-brand-red transition-colors tracking-wide uppercase"
             >
               {link.name}
             </a>
           ))}
-          <button 
+          <button
             onClick={onOpenSponsor}
             className="text-sm font-black uppercase tracking-widest text-white/40 hover:text-white transition-colors"
           >
             PARTNER
           </button>
-          <a 
-            href="#register" 
+          <a
+            href="#register"
             className="brand-gradient hover:opacity-90 text-white px-6 py-2 rounded-full font-bold text-sm transition-all transform hover:scale-105"
           >
             REGISTER NOW
@@ -663,7 +662,7 @@ const Navbar = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -672,17 +671,17 @@ const Navbar = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
           >
             <div className="flex flex-col p-6 space-y-6">
               {navLinks.map((link) => (
-                <a 
-                  key={link.name} 
-                  href={link.href} 
+                <a
+                  key={link.name}
+                  href={link.href}
                   onClick={() => setIsOpen(false)}
                   className="text-2xl font-display font-bold hover:text-brand-red transition-colors text-white uppercase tracking-tighter"
                 >
                   {link.name}
                 </a>
               ))}
-              <a 
-                href="#register" 
+              <a
+                href="#register"
                 onClick={() => setIsOpen(false)}
                 className="brand-gradient text-white px-6 py-4 rounded-2xl font-black text-center transition-all shadow-lg text-lg"
               >
@@ -698,14 +697,14 @@ const Navbar = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
 
 const CountdownItem = ({ label, value }: { label: string; value: number }) => {
   const displayValue = String(value).padStart(2, '0');
-  
+
   return (
     <div className="flex flex-col items-center">
       <div className="relative group">
         {/* Glowing Background Pulse */}
         <div className="absolute inset-0 bg-brand-red/20 blur-xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-700 -z-10" />
         <div className="absolute inset-0 bg-brand-red/5 blur-lg rounded-full animate-pulse -z-10" />
-        
+
         <div className="flex space-x-1">
           {displayValue.split('').map((digit, idx) => (
             <div key={idx} className="relative w-8 h-12 md:w-12 md:h-16 bg-zinc-900 border border-white/10 rounded-lg flex items-center justify-center overflow-hidden shadow-2xl">
@@ -721,14 +720,14 @@ const CountdownItem = ({ label, value }: { label: string; value: number }) => {
                   {digit}
                 </motion.span>
               </AnimatePresence>
-              
+
               {/* Horizontal Line across the middle for "flip" feel */}
               <div className="absolute top-1/2 left-0 w-full h-[1px] bg-white/5" />
             </div>
           ))}
         </div>
       </div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
@@ -779,7 +778,7 @@ const Countdown = () => {
   ];
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.8 }}
@@ -832,10 +831,10 @@ const ImageCarousel = () => {
           transition={{ duration: 1.5, ease: "easeInOut" }}
           className="absolute inset-0 w-full h-full"
         >
-          <img 
-            src={images[currentIndex]} 
-            className="w-full h-full object-cover" 
-            alt={`Past YLC Event ${currentIndex + 1}`} 
+          <img
+            src={images[currentIndex]}
+            className="w-full h-full object-cover"
+            alt={`Past YLC Event ${currentIndex + 1}`}
           />
           <div className="absolute inset-0 bg-black/70 bg-gradient-to-b from-black/60 via-transparent to-black/80" />
         </motion.div>
@@ -843,13 +842,13 @@ const ImageCarousel = () => {
 
       {/* Navigation Controls */}
       <div className="absolute bottom-10 right-10 flex items-center space-x-4 z-20">
-        <button 
+        <button
           onClick={prev}
           className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-brand-red transition-all group"
         >
           <ChevronLeft className="group-hover:-translate-x-1 transition-transform" />
         </button>
-        <button 
+        <button
           onClick={next}
           className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-brand-red transition-all group"
         >
@@ -874,16 +873,16 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-10 pb-10 sm:pt-20 sm:pb-20 bg-black overflow-hidden">
       <ImageCarousel />
-      
+
       <div className="container mx-auto px-6 relative z-10 text-center">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.2 }}
           className="max-w-5xl mx-auto pt-10 pb-10 md:pt-20 md:pb-20"
         >
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -893,8 +892,8 @@ const Hero = () => {
             <div className="px-6 py-2 rounded-full border border-white/20 bg-black/40 backdrop-blur-xl mb-4">
               <span className="text-brand-red text-[10px] sm:text-xs md:text-sm font-black tracking-widest uppercase">Young Leaders Conference 2026 • Bauchi State</span>
             </div>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
@@ -907,12 +906,12 @@ const Hero = () => {
               </span>
             </motion.div>
           </motion.div>
-          
+
           <h1 className="text-5xl sm:text-7xl md:text-[120px] font-display font-black leading-none mb-6 sm:mb-10 text-white uppercase tracking-tighter drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
             GOOD<br />
             <span className="text-brand-red italic brand-glow-text">SUCCESS</span>
           </h1>
-          
+
           <p className="text-lg sm:text-xl md:text-4xl font-serif italic text-white/90 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg px-2">
             “Success is what you achieve. Good Success is how you achieve it.”
           </p>
@@ -960,16 +959,16 @@ const About = () => {
                 Join the 6th edition as we explore the blueprint for "Good Success"—the kind that transforms societies.
               </p>
             </div>
-            
+
             <div className="mt-16 grid grid-cols-2 gap-12">
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="group cursor-default"
               >
                 <div className="text-6xl font-display font-black text-brand-red transition-transform origin-left">100+</div>
                 <div className="text-xs font-bold text-white/40 tracking-[0.3em] uppercase mt-2 group-hover:text-white transition-colors">Annual Attendees</div>
               </motion.div>
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="group cursor-default"
               >
@@ -979,7 +978,7 @@ const About = () => {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -989,18 +988,18 @@ const About = () => {
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-6">
                 <div className="relative group overflow-hidden rounded-[32px] aspect-[4/5] shadow-2xl">
-                   <img 
-                    src="/img/pic2.jpg" 
-                    alt="Past YLC Highlights" 
+                  <img
+                    src="/img/pic2.jpg"
+                    alt="Past YLC Highlights"
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
                   />
                   <div className="absolute inset-0 bg-brand-purple/30 group-hover:bg-transparent transition-colors duration-500" />
                   <div className="absolute bottom-4 left-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-white border border-white/20">YLC 4.0</div>
                 </div>
                 <div className="relative group overflow-hidden rounded-[32px] aspect-square shadow-2xl">
-                   <img 
-                    src="/img/pic8.jpg" 
-                    alt="Past YLC Highlights" 
+                  <img
+                    src="/img/pic8.jpg"
+                    alt="Past YLC Highlights"
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
                   />
                   <div className="absolute inset-0 bg-brand-red/30 group-hover:bg-transparent transition-colors duration-500" />
@@ -1009,17 +1008,17 @@ const About = () => {
               </div>
               <div className="space-y-6 pt-0 lg:pt-12">
                 <div className="relative group overflow-hidden rounded-[32px] aspect-square shadow-2xl">
-                   <img 
-                    src="/img/pic9.jpg" 
-                    alt="Past YLC Highlights" 
+                  <img
+                    src="/img/pic9.jpg"
+                    alt="Past YLC Highlights"
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
                   />
                   <div className="absolute inset-0 bg-brand-red/30 group-hover:bg-transparent transition-colors duration-500" />
                 </div>
                 <div className="relative group overflow-hidden rounded-[32px] aspect-[4/5] shadow-2xl">
-                   <img 
-                    src="/img/pic6.jpg" 
-                    alt="Past YLC Highlights" 
+                  <img
+                    src="/img/pic6.jpg"
+                    alt="Past YLC Highlights"
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
                   />
                   <div className="absolute inset-0 bg-brand-purple/30 group-hover:bg-transparent transition-colors duration-500" />
@@ -1031,7 +1030,7 @@ const About = () => {
             {/* Glowing accents behind the gallery */}
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand-red/20 blur-[80px] rounded-full -z-10" />
             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-purple/20 blur-[80px] rounded-full -z-10" />
-            
+
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/90 backdrop-blur-md p-6 rounded-xl border border-white/10 max-w-[200px] shadow-2xl z-20">
               <p className="text-sm font-serif italic text-white/90 text-center">
                 "Real leadership is carved in the heart of the community."
@@ -1057,9 +1056,9 @@ const ThemeSection = () => {
   return (
     <section className="py-24 relative bg-black overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(234,35,42,0.1)_0%,transparent_70%)]" />
-      
+
       <div className="container mx-auto px-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -1079,8 +1078,8 @@ const ThemeSection = () => {
               key={value.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ 
-                scale: 1.03, 
+              whileHover={{
+                scale: 1.03,
                 y: -10,
                 backgroundColor: "rgba(24, 24, 27, 0.8)",
                 borderColor: "rgba(168, 85, 247, 0.5)"
@@ -1119,9 +1118,9 @@ const WhyAttend = () => {
     <section className="py-24 bg-zinc-950 overflow-hidden relative">
       <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-red/10 blur-[120px] -z-10" />
       <div className="absolute bottom-0 left-0 w-1/2 h-full bg-brand-purple/10 blur-[120px] -z-10" />
-      
+
       <div className="container mx-auto px-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -1142,12 +1141,12 @@ const WhyAttend = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {reasons.map((reason, index) => (
-            <motion.div 
-              key={index} 
+            <motion.div
+              key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ 
-                scale: 1.02, 
+              whileHover={{
+                scale: 1.02,
                 backgroundColor: "rgba(255, 255, 255, 0.08)",
                 borderColor: "rgba(234, 35, 42, 0.5)"
               }}
@@ -1183,7 +1182,7 @@ const Schedule = () => {
   return (
     <section id="schedule" className="py-24 bg-zinc-950">
       <div className="container mx-auto px-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -1224,13 +1223,13 @@ const Schedule = () => {
 
 const SpeakerCard = ({ name, role, image }: { name: string, role: string, image: string, key?: React.Key }) => {
   return (
-    <div 
+    <div
       className="group relative overflow-hidden rounded-3xl shadow-2xl"
     >
       <div className="aspect-[3/4] overflow-hidden group-hover:grayscale-0 transition-all duration-700">
-        <img 
-          src={image} 
-          alt={name} 
+        <img
+          src={image}
+          alt={name}
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0"
         />
       </div>
@@ -1239,7 +1238,7 @@ const SpeakerCard = ({ name, role, image }: { name: string, role: string, image:
         <div className="w-12 h-1 bg-brand-red mb-4 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
         <h4 className="text-2xl font-display font-bold text-white mb-1 uppercase leading-tight">{name}</h4>
         <p className="text-brand-red text-xs font-black tracking-widest uppercase">{role}</p>
-        
+
         <div className="mt-6 flex space-x-4 opacity-0 group-hover:opacity-100 transition-opacity delay-200">
           <Instagram size={18} className="text-white hover:text-brand-red cursor-pointer transition-colors" />
           <Twitter size={18} className="text-white hover:text-brand-red cursor-pointer transition-colors" />
@@ -1264,9 +1263,9 @@ const Speakers = () => {
     <section id="speakers" className="py-32 relative overflow-hidden bg-black">
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[300px] h-[300px] bg-brand-red/10 blur-[100px] rounded-full -z-10" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-brand-purple/5 blur-[120px] rounded-full -z-10" />
-      
+
       <div className="container mx-auto px-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -1290,10 +1289,10 @@ const Speakers = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <SpeakerCard 
-                name={s.name} 
-                role={s.role} 
-                image={s.image} 
+              <SpeakerCard
+                name={s.name}
+                role={s.role}
+                image={s.image}
               />
             </motion.div>
           ))}
@@ -1309,7 +1308,7 @@ const Panel = ({ onOpenMainStage }: { onOpenMainStage: () => void }) => {
       <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
         <Tv size={400} />
       </div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
@@ -1323,7 +1322,7 @@ const Panel = ({ onOpenMainStage }: { onOpenMainStage: () => void }) => {
           A high-stakes debate and dialogue tackling the tension between modern ambition and ancient principles. No fluff—just real answers from the frontline.
         </p>
         <div className="flex flex-wrap justify-center gap-6">
-          <button 
+          <button
             onClick={onOpenMainStage}
             className="px-10 py-5 border-2 border-black font-black uppercase tracking-[0.2em] text-sm hover:bg-black hover:text-white transition-all group flex items-center space-x-3"
           >
@@ -1350,9 +1349,9 @@ const Testimonials = () => {
   return (
     <section className="py-24 bg-zinc-950 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/pinstriped-suit.png')] opacity-10" />
-      
+
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -1362,11 +1361,11 @@ const Testimonials = () => {
             <MessageSquare size={32} />
           </div>
           <h2 className="text-4xl md:text-6xl font-display font-bold mb-16 text-white">Witness of <span className="text-brand-red italic font-serif">Impact</span></h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {quotes.map((q, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -1400,7 +1399,7 @@ const Sponsors = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
 
   const allSponsors = [
     { id: 1, name: "Future-Forward Leaders Platform", img: "/img/fflp.png" },
-    { id: 2, name: "Vision & Lenses", img: "/img/v&l.png" },
+    { id: 2, name: "Vision & Lenses", img: "/img/vl.png" },
     { id: 3, name: "Strategic Impact Hub", img: "/img/impact.png" },
     { id: 4, name: "Global Leadership Initiative", img: "/img/gli.png" },
     { id: 5, name: "Bauchi Tech Park", img: "/img/tech.png" },
@@ -1435,14 +1434,14 @@ const Sponsors = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {platinumSponsors.map(sponsor => (
-              <motion.div 
+              <motion.div
                 key={sponsor.id}
                 whileHover={{ y: -5, borderColor: 'rgba(234,35,42,0.5)' }}
                 className="h-32 bg-white/[0.03] border border-white/5 rounded-3xl flex items-center justify-center p-8 backdrop-blur-sm transition-colors group"
               >
-                <img 
-                  src={sponsor.img} 
-                  alt={sponsor.name} 
+                <img
+                  src={sponsor.img}
+                  alt={sponsor.name}
                   className="max-h-16 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
@@ -1469,14 +1468,14 @@ const Sponsors = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-2 gap-6 max-w-2xl mx-auto">
             {goldSponsors.map(sponsor => (
-              <motion.div 
+              <motion.div
                 key={sponsor.id}
                 whileHover={{ y: -3, borderColor: 'rgba(234,35,42,0.3)' }}
                 className="h-24 bg-white/[0.02] border border-white/5 rounded-2xl flex items-center justify-center p-6 backdrop-blur-sm transition-colors group"
               >
-                <img 
-                  src={sponsor.img} 
-                  alt={sponsor.name} 
+                <img
+                  src={sponsor.img}
+                  alt={sponsor.name}
                   className="max-h-12 w-auto object-contain opacity-40 group-hover:opacity-100 transition-opacity"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
@@ -1499,25 +1498,25 @@ const Sponsors = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
           <div className="text-center mb-10">
             <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/20">Global Collaborators</span>
           </div>
-          
+
           <div className="relative flex overflow-hidden group">
-            <motion.div 
+            <motion.div
               className="flex whitespace-nowrap py-10"
               animate={{ x: ["0%", "-50%"] }}
-              transition={{ 
-                repeat: Infinity, 
-                duration: 30, 
-                ease: "linear" 
+              transition={{
+                repeat: Infinity,
+                duration: 30,
+                ease: "linear"
               }}
             >
               {marqueeItems.map((sponsor, idx) => (
-                <div 
+                <div
                   key={`${sponsor.id}-${idx}`}
                   className="flex items-center justify-center mx-12 grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer"
                 >
-                  <img 
-                    src={sponsor.img} 
-                    alt={sponsor.name} 
+                  <img
+                    src={sponsor.img}
+                    alt={sponsor.name}
                     className="h-8 md:h-10 w-auto object-contain"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
@@ -1533,7 +1532,7 @@ const Sponsors = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
                 </div>
               ))}
             </motion.div>
-            
+
             {/* Gradient masks for smooth marquee edges */}
             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10" />
             <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10" />
@@ -1541,13 +1540,13 @@ const Sponsors = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
         </div>
 
         {/* Inquiries */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="mt-20 text-center"
         >
-          <button 
+          <button
             onClick={onOpenSponsor}
             className="text-xs font-black text-white/30 uppercase tracking-[0.3em] hover:text-brand-red transition-colors inline-flex items-center space-x-2 group"
           >
@@ -1589,7 +1588,7 @@ const FinalCTA = () => {
     }
     setError('');
     setIsSubmitting(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
@@ -1606,7 +1605,7 @@ const FinalCTA = () => {
   return (
     <section id="register" className="py-32 relative bg-black overflow-hidden">
       <div className="container mx-auto px-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -1632,60 +1631,60 @@ const FinalCTA = () => {
                   <p className="text-lg sm:text-xl md:text-2xl font-medium mb-10 max-w-2xl mx-auto text-white/90 px-4">
                     Secure your seat today at the conference of the year.
                   </p>
-                  
+
                   <form onSubmit={handleSubmit} className="max-w-4xl mx-auto space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="relative">
-                        <input 
-                          type="text" 
+                        <input
+                          type="text"
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
-                          placeholder="Full Name *" 
+                          placeholder="Full Name *"
                           className={`w-full px-8 py-5 rounded-3xl border-2 ${error.includes(' name') ? 'border-white' : 'border-white/30'} bg-white/10 backdrop-blur-md placeholder-white/50 font-bold focus:outline-none text-white focus:border-white transition-all text-lg shadow-inner`}
                           disabled={isSubmitting}
                         />
                       </div>
                       <div className="relative">
-                        <input 
-                          type="email" 
+                        <input
+                          type="email"
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          placeholder="Email Address *" 
+                          placeholder="Email Address *"
                           className={`w-full px-8 py-5 rounded-3xl border-2 ${error.includes('email') ? 'border-white' : 'border-white/30'} bg-white/10 backdrop-blur-md placeholder-white/50 font-bold focus:outline-none text-white focus:border-white transition-all text-lg shadow-inner`}
                           disabled={isSubmitting}
                         />
                       </div>
                       <div className="relative">
-                        <input 
-                          type="tel" 
+                        <input
+                          type="tel"
                           name="tel"
                           value={formData.tel}
                           onChange={handleChange}
-                          placeholder="Phone Number *" 
+                          placeholder="Phone Number *"
                           className={`w-full px-8 py-5 rounded-3xl border-2 ${error.includes('phone') ? 'border-white' : 'border-white/30'} bg-white/10 backdrop-blur-md placeholder-white/50 font-bold focus:outline-none text-white focus:border-white transition-all text-lg shadow-inner`}
                           disabled={isSubmitting}
                         />
                       </div>
                       <div className="relative">
-                        <input 
-                          type="text" 
+                        <input
+                          type="text"
                           name="institution"
                           value={formData.institution}
                           onChange={handleChange}
-                          placeholder="Institution (Optional)" 
+                          placeholder="Institution (Optional)"
                           className="w-full px-8 py-5 rounded-3xl border-2 border-white/30 bg-white/10 backdrop-blur-md placeholder-white/50 font-bold focus:outline-none text-white focus:border-white transition-all text-lg shadow-inner"
                           disabled={isSubmitting}
                         />
                       </div>
                       <div className="relative md:col-span-2">
-                        <input 
-                          type="text" 
+                        <input
+                          type="text"
                           name="position"
                           value={formData.position}
                           onChange={handleChange}
-                          placeholder="Position/Role (Optional)" 
+                          placeholder="Position/Role (Optional)"
                           className="w-full px-8 py-5 rounded-3xl border-2 border-white/30 bg-white/10 backdrop-blur-md placeholder-white/50 font-bold focus:outline-none text-white focus:border-white transition-all text-lg shadow-inner"
                           disabled={isSubmitting}
                         />
@@ -1695,7 +1694,7 @@ const FinalCTA = () => {
                     <div className="pt-4 flex flex-col items-center">
                       <AnimatePresence>
                         {error && (
-                          <motion.div 
+                          <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
@@ -1710,9 +1709,9 @@ const FinalCTA = () => {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                      
-                      <button 
-                        type="submit" 
+
+                      <button
+                        type="submit"
                         disabled={isSubmitting}
                         className="bg-white text-brand-red px-16 py-6 rounded-full font-black uppercase text-xl hover:scale-105 transition-all shadow-2xl hover:bg-zinc-950 hover:text-white disabled:opacity-50 disabled:scale-100 flex items-center justify-center min-w-[240px]"
                       >
@@ -1727,13 +1726,13 @@ const FinalCTA = () => {
                   <p className="text-sm font-bold text-white/60 tracking-widest uppercase mt-12">Limited Seats Available. Registration closes 15th May, 2026</p>
                 </motion.div>
               ) : (
-                <motion.div 
+                <motion.div
                   key="success"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="py-12"
                 >
-                  <motion.div 
+                  <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 10 }}
@@ -1746,7 +1745,7 @@ const FinalCTA = () => {
                     Welcome to the 6.0 blueprint, <span className="text-white font-black">{formData.name}</span>.<br />
                     Confirmation sent to <span className="font-black text-white underline underline-offset-8 decoration-white/30">{formData.email}</span>
                   </p>
-                  <motion.button 
+                  <motion.button
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1 }}
@@ -1784,10 +1783,10 @@ const Footer = () => {
               <div className="relative w-12 h-12 flex items-center justify-center transform group-hover:scale-110 transition-transform">
                 <div className="absolute inset-0 bg-brand-white rounded-xl rotate-12 opacity-80" />
                 <div className="relative z-10 w-full h-full flex items-center justify-center">
-                  <img 
-                    src="/img/logo.png" 
-                    alt="YLC" 
-                    className="w-8 h-8 object-contain" 
+                  <img
+                    src="/img/logo.png"
+                    alt="YLC"
+                    className="w-8 h-8 object-contain"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                       const parent = e.currentTarget.parentElement;
@@ -1807,7 +1806,7 @@ const Footer = () => {
               Raising principled, visionary, and impact-driven leaders across Nigeria and the world. Join the movement.
             </p>
           </div>
-          
+
           <div>
             <h5 className="font-bold uppercase tracking-widest text-xs text-brand-red mb-8">Navigation</h5>
             <ul className="space-y-4 text-white/60">
@@ -1843,13 +1842,13 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-4">
           <p className="text-white/20 text-xs">© 2026 Young Leaders Conference. Designed for Impact.</p>
           <div className="flex space-x-4">
-             <span className="text-brand-red text-[10px] font-black tracking-[0.3em] uppercase">BAUCHI</span>
-             <span className="text-white/20 text-[10px] font-black tracking-[0.3em] uppercase">•</span>
-             <span className="text-brand-purple text-[10px] font-black tracking-[0.3em] uppercase">NIGERIA</span>
+            <span className="text-brand-red text-[10px] font-black tracking-[0.3em] uppercase">BAUCHI</span>
+            <span className="text-white/20 text-[10px] font-black tracking-[0.3em] uppercase">•</span>
+            <span className="text-brand-purple text-[10px] font-black tracking-[0.3em] uppercase">NIGERIA</span>
           </div>
         </div>
       </div>
@@ -1859,9 +1858,9 @@ const Footer = () => {
 
 const WhatsAppButton = () => {
   return (
-    <a 
-      href="https://wa.me/2348103339993" 
-      target="_blank" 
+    <a
+      href="https://wa.me/2348103339993"
+      target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-8 right-8 z-[60] brand-gradient text-white w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 transition-transform hover:rotate-12 brand-glow"
     >
@@ -1939,15 +1938,15 @@ const MainStageModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
             className="absolute inset-0 bg-black/95 backdrop-blur-3xl"
           />
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -1967,7 +1966,7 @@ const MainStageModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
                   </div>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={onClose}
                 className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:text-white transition-colors"
               >
@@ -1983,9 +1982,9 @@ const MainStageModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
                   {/* Simulated Video UI */}
                   <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40 grayscale group-hover:scale-105 transition-transform duration-[10s]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                  
+
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.button 
+                    <motion.button
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       className="w-24 h-24 rounded-full bg-brand-red/90 text-white flex items-center justify-center shadow-2xl brand-glow"
@@ -2005,7 +2004,7 @@ const MainStageModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
                       </div>
                     </div>
                     <div className="flex space-x-2">
-                       <div className="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-black text-white uppercase tracking-widest">1080P HD</div>
+                      <div className="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-black text-white uppercase tracking-widest">1080P HD</div>
                     </div>
                   </div>
                 </div>
@@ -2063,9 +2062,9 @@ const MainStageModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
                     </div>
                   </div>
                   <div className="relative">
-                    <input 
-                      type="text" 
-                      placeholder="Comment something..." 
+                    <input
+                      type="text"
+                      placeholder="Comment something..."
                       className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-xs text-white placeholder-white/20 focus:outline-none focus:border-brand-red transition-all"
                     />
                     <button className="absolute right-3 top-1/2 -translate-y-1/2 p-2 text-brand-red">
@@ -2111,10 +2110,10 @@ const FAQ = () => {
   return (
     <section className="py-24 bg-zinc-950 relative overflow-hidden" id="faq">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -2171,30 +2170,27 @@ const FAQ = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`group border rounded-[32px] transition-all duration-500 overflow-hidden ${
-                  openIndex === index 
-                    ? "bg-white/[0.03] border-white/20 shadow-2xl shadow-brand-red/5" 
+                className={`group border rounded-[32px] transition-all duration-500 overflow-hidden ${openIndex === index
+                    ? "bg-white/[0.03] border-white/20 shadow-2xl shadow-brand-red/5"
                     : "bg-transparent border-white/5 hover:border-white/10"
-                }`}
+                  }`}
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
                   className="w-full flex items-center justify-between p-8 text-left outline-none"
                 >
-                  <span className={`text-lg md:text-xl font-bold tracking-tight transition-colors duration-300 ${
-                    openIndex === index ? "text-white" : "text-white/60 group-hover:text-white"
-                  }`}>
+                  <span className={`text-lg md:text-xl font-bold tracking-tight transition-colors duration-300 ${openIndex === index ? "text-white" : "text-white/60 group-hover:text-white"
+                    }`}>
                     {faq.question}
                   </span>
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
-                    openIndex === index 
-                      ? "bg-brand-red text-white rotate-180" 
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${openIndex === index
+                      ? "bg-brand-red text-white rotate-180"
                       : "bg-white/5 text-white/30 group-hover:bg-white/10"
-                  }`}>
+                    }`}>
                     <ChevronDown size={20} />
                   </div>
                 </button>
-                
+
                 <AnimatePresence>
                   {openIndex === index && (
                     <motion.div
@@ -2216,14 +2212,14 @@ const FAQ = () => {
             ))}
           </div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="mt-16 text-center"
           >
             <p className="text-white/30 font-bold uppercase tracking-widest text-[10px]">
-              Still have questions? Contact us at 
+              Still have questions? Contact us at
               <a href="quintessentialleadinst@gmail.com" className="text-brand-red ml-2 hover:underline">quintessentialleadinst@gmail.com</a>
             </p>
           </motion.div>
