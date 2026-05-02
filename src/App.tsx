@@ -680,7 +680,16 @@ const Navbar = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsOpen(false);
+                    setTimeout(() => {
+                      const target = document.querySelector(link.href);
+                      if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }, 150);
+                  }}
                   className="text-2xl font-display font-bold hover:text-brand-red transition-colors text-white uppercase tracking-tighter"
                 >
                   {link.name}
@@ -694,7 +703,16 @@ const Navbar = ({ onOpenSponsor }: { onOpenSponsor: () => void }) => {
               </button>
               <a
                 href="#register"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsOpen(false);
+                  setTimeout(() => {
+                    const target = document.querySelector('#register');
+                    if (target) {
+                      target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }, 150);
+                }}
                 className="brand-gradient text-white px-6 py-4 rounded-2xl font-black text-center transition-all shadow-lg text-lg"
               >
                 REGISTER NOW
