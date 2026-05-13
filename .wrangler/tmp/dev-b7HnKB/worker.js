@@ -92,24 +92,54 @@ async function handleRegister(request, env, corsHeaders) {
           headers: corsHeaders
         });
       }
-    }
-    const result = await env.DB.prepare(
-      "INSERT INTO attendees (name, email, tel, form_type, payload) VALUES (?, ?, ?, ?, ?)"
-    ).bind(
-      formType === "school" ? String(payload.schoolName || "") : String(payload.name || ""),
-      formType === "school" ? null : payload.email ? String(payload.email) : null,
-      formType === "school" ? null : payload.tel ? String(payload.tel) : null,
-      formType,
-      JSON.stringify(payload)
-    ).run();
-    if (result.success) {
-      return new Response(JSON.stringify({ success: true, message: "Registration successful" }), {
-        status: 201,
-        headers: corsHeaders
-      });
+      const result = await env.DB.prepare(
+        "INSERT INTO attendees (name, email, tel, institution, position, payload) VALUES (?, ?, ?, ?, ?, ?)"
+      ).bind(
+        String(payload.name || ""),
+        String(payload.email || ""),
+        String(payload.tel || ""),
+        payload.institution ? String(payload.institution) : null,
+        payload.position ? String(payload.position) : null,
+        JSON.stringify(payload)
+      ).run();
+      if (result.success) {
+        return new Response(JSON.stringify({ success: true, message: "Attendee registration successful" }), {
+          status: 201,
+          headers: corsHeaders
+        });
+      } else {
+        return new Response(JSON.stringify({ success: false, message: "Database insertion failed" }), {
+          status: 500,
+          headers: corsHeaders
+        });
+      }
+    } else if (formType === "school") {
+      const result = await env.DB.prepare(
+        "INSERT INTO schools (school_name, students, staff, address, contact_name, contact_email, contact_phone, payload) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+      ).bind(
+        String(payload.schoolName || ""),
+        parseInt(String(payload.students || "0")),
+        parseInt(String(payload.staff || "0")),
+        String(payload.address || ""),
+        payload.contactName ? String(payload.contactName) : null,
+        payload.contactEmail ? String(payload.contactEmail) : null,
+        payload.contactPhone ? String(payload.contactPhone) : null,
+        JSON.stringify(payload)
+      ).run();
+      if (result.success) {
+        return new Response(JSON.stringify({ success: true, message: "School registration successful" }), {
+          status: 201,
+          headers: corsHeaders
+        });
+      } else {
+        return new Response(JSON.stringify({ success: false, message: "Database insertion failed" }), {
+          status: 500,
+          headers: corsHeaders
+        });
+      }
     } else {
-      return new Response(JSON.stringify({ success: false, message: "Database insertion failed" }), {
-        status: 500,
+      return new Response(JSON.stringify({ success: false, message: "Invalid form type" }), {
+        status: 400,
         headers: corsHeaders
       });
     }
@@ -124,8 +154,13 @@ async function handleRegister(request, env, corsHeaders) {
 __name(handleRegister, "handleRegister");
 async function handleRegistrations(env, corsHeaders) {
   try {
-    const rows = await env.DB.prepare("SELECT id, name, email, tel, form_type, payload, created_at FROM attendees ORDER BY created_at DESC LIMIT 100").all();
-    return new Response(JSON.stringify({ success: true, registrations: rows.results ?? [] }), {
+    const attendees = await env.DB.prepare("SELECT id, name, email, tel, institution, position, payload, created_at, 'attendee' as type FROM attendees ORDER BY created_at DESC").all();
+    const schools = await env.DB.prepare("SELECT id, school_name as name, contact_email as email, contact_phone as tel, students, staff, address, payload, created_at, 'school' as type FROM schools ORDER BY created_at DESC").all();
+    const allRegistrations = [
+      ...(attendees.results ?? []).map((row) => ({ ...row, form_type: "attendee" })),
+      ...(schools.results ?? []).map((row) => ({ ...row, form_type: "school" }))
+    ].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    return new Response(JSON.stringify({ success: true, registrations: allRegistrations }), {
       status: 200,
       headers: corsHeaders
     });
