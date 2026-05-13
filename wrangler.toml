@@ -1,0 +1,8 @@
+name = "ylc-registration-worker"
+main = "worker.ts"
+compatibility_date = "2026-05-13"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ylc-attendees"
+database_id = "eae852eb-a7d4-418c-903d-36040df6729a"

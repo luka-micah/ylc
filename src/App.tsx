@@ -37,6 +37,31 @@ import {
 
 import { motion, AnimatePresence } from 'motion/react';
 
+const registrationApiBase = import.meta.env.VITE_REGISTRATION_API_BASE_URL?.replace(/\/$/, '') ?? '';
+
+interface RegistrationResponse {
+  success: boolean;
+  message?: string;
+  [key: string]: unknown;
+}
+
+const submitRegistrationForm = async (payload: unknown) => {
+  const response = await fetch(`${registrationApiBase}/register`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  });
+
+  const data = (await response.json().catch(() => ({ message: response.statusText }))) as RegistrationResponse;
+  if (!response.ok) {
+    throw new Error(data.message || 'Registration failed');
+  }
+
+  return data;
+};
+
 // --- Components ---
 
 const DonationSection = ({ onOpenDonate }: { onOpenDonate: () => void }) => {
@@ -1601,7 +1626,7 @@ const FinalCTA = () => {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name.trim()) {
       setError('Please enter your full name');
@@ -1619,11 +1644,17 @@ const FinalCTA = () => {
     setError('');
     setIsSubmitting(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await submitRegistrationForm({
+        formType: 'main',
+        payload: formData
+      });
       setIsSubmitted(true);
-    }, 1500);
+    } catch (err: any) {
+      setError(err?.message || 'Unable to submit registration');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1753,7 +1784,7 @@ const FinalCTA = () => {
                       </button>
                     </div>
                   </form>
-                  <p className="text-sm font-bold text-white/60 tracking-widest uppercase mt-12">Limited Seats Available. Registration closes 15th May, 2026</p>
+                  <p className="text-sm font-bold text-white/60 tracking-widest uppercase mt-12">Limited Seats Available. Registration closes 20th May, 2026</p>
                 </motion.div>
               ) : (
                 <motion.div
@@ -1820,7 +1851,7 @@ const SchoolRegistrationForm = () => {
     if (error) setError('');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.schoolName.trim()) {
@@ -1841,10 +1872,17 @@ const SchoolRegistrationForm = () => {
     }
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await submitRegistrationForm({
+        formType: 'school',
+        payload: formData
+      });
       setIsSubmitted(true);
-    }, 1200);
+    } catch (err: any) {
+      setError(err?.message || 'Unable to submit registration');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
