@@ -1839,7 +1839,10 @@ const SchoolRegistrationForm = () => {
     schoolName: '',
     students: '',
     staff: '',
-    address: ''
+    address: '',
+    contactName: '',
+    contactEmail: '',
+    contactPhone: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -1869,6 +1872,21 @@ const SchoolRegistrationForm = () => {
     if (!formData.address.trim()) {
       setError('Please enter the school address');
       return;
+    }
+    if (!formData.contactName.trim()) {
+      setError('Please enter the contact name');
+      return;
+    }
+    if (!formData.contactPhone.trim()) {
+      setError('Please enter the contact phone / WhatsApp number');
+      return;
+    }
+    if (formData.contactEmail.trim()) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.contactEmail.trim())) {
+        setError('Please enter a valid contact email');
+        return;
+      }
     }
 
     setIsSubmitting(true);
@@ -1957,6 +1975,42 @@ const SchoolRegistrationForm = () => {
                     disabled={isSubmitting}
                   />
                 </label>
+                <label className="space-y-2 text-sm text-white/60">
+                  <span className="font-black uppercase tracking-[0.25em] text-[10px]">Contact Name</span>
+                  <input
+                    type="text"
+                    name="contactName"
+                    value={formData.contactName}
+                    onChange={handleChange}
+                    className="w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/30 focus:border-brand-red focus:outline-none focus:bg-white/10 transition"
+                    placeholder="Contact person name"
+                    disabled={isSubmitting}
+                  />
+                </label>
+                <label className="space-y-2 text-sm text-white/60">
+                  <span className="font-black uppercase tracking-[0.25em] text-[10px]">Contact Email <span className="text-white/40">(optional)</span></span>
+                  <input
+                    type="email"
+                    name="contactEmail"
+                    value={formData.contactEmail}
+                    onChange={handleChange}
+                    className="w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/30 focus:border-brand-red focus:outline-none focus:bg-white/10 transition"
+                    placeholder="Contact email address"
+                    disabled={isSubmitting}
+                  />
+                </label>
+                <label className="space-y-2 text-sm text-white/60">
+                  <span className="font-black uppercase tracking-[0.25em] text-[10px]">Contact Phone Whatsapp</span>
+                  <input
+                    type="tel"
+                    name="contactPhone"
+                    value={formData.contactPhone}
+                    onChange={handleChange}
+                    className="w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/30 focus:border-brand-red focus:outline-none focus:bg-white/10 transition"
+                    placeholder="Contact WhatsApp number"
+                    disabled={isSubmitting}
+                  />
+                </label>
               </div>
 
               {error && (
@@ -1989,7 +2043,15 @@ const SchoolRegistrationForm = () => {
               <button
                 onClick={() => {
                   setIsSubmitted(false);
-                  setFormData({ schoolName: '', students: '', staff: '', address: '' });
+                  setFormData({
+                    schoolName: '',
+                    students: '',
+                    staff: '',
+                    address: '',
+                    contactName: '',
+                    contactEmail: '',
+                    contactPhone: ''
+                  });
                 }}
                 className="px-12 py-4 rounded-full border border-white/10 text-white font-black uppercase tracking-[0.2em] text-sm hover:bg-white/10 transition"
               >
