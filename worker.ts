@@ -71,7 +71,7 @@ async function handleRegister(request: Request, env: Env, corsHeaders: Record<st
 
     const { formType, payload } = body as { formType?: string; payload?: Record<string, unknown> };
 
-    if (!['attendee', 'school'].includes(formType || '') || !payload || typeof payload !== 'object') {
+    if (!['attendee', 'school', 'partner'].includes(formType || '') || !payload || typeof payload !== 'object') {
       return new Response(JSON.stringify({ success: false, message: 'Invalid formType or payload' }), {
         status: 400,
         headers: corsHeaders
@@ -80,7 +80,9 @@ async function handleRegister(request: Request, env: Env, corsHeaders: Record<st
 
     const requiredFields = formType === 'school'
       ? ['schoolName', 'students', 'staff', 'address']
-      : ['name', 'email', 'tel'];
+      : formType === 'partner'
+        ? ['company', 'email']
+        : ['name', 'email', 'tel'];
 
     const missingFields = requiredFields.filter((field) => {
       const value = payload[field];
@@ -125,6 +127,37 @@ async function handleRegister(request: Request, env: Env, corsHeaders: Record<st
 
       if (result.success) {
         return new Response(JSON.stringify({ success: true, message: 'Attendee registration successful' }), {
+          status: 201,
+          headers: corsHeaders
+        });
+      } else {
+        return new Response(JSON.stringify({ success: false, message: 'Database insertion failed' }), {
+          status: 500,
+          headers: corsHeaders
+        });
+      }
+    } else if (formType === 'partner') {
+      const { email } = payload as { email?: string };
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email || '')) {
+        return new Response(JSON.stringify({ success: false, message: 'Invalid email format' }), {
+          status: 400,
+          headers: corsHeaders
+        });
+      }
+
+      const result = await env.DB.prepare(
+        'INSERT INTO partners (company, email, interest, message, payload) VALUES (?, ?, ?, ?, ?)'
+      ).bind(
+        String(payload.company || ''),
+        String(payload.email || ''),
+        String(payload.interest || ''),
+        payload.message ? String(payload.message) : null,
+        JSON.stringify(payload)
+      ).run();
+
+      if (result.success) {
+        return new Response(JSON.stringify({ success: true, message: 'Partner request submitted' }), {
           status: 201,
           headers: corsHeaders
         });
@@ -179,10 +212,12 @@ async function handleRegistrations(env: Env, corsHeaders: Record<string, string>
   try {
     const attendees = await env.DB.prepare('SELECT id, name, email, tel, institution, position, payload, created_at, \'attendee\' as type FROM attendees ORDER BY created_at DESC').all();
     const schools = await env.DB.prepare('SELECT id, school_name as name, contact_email as email, contact_phone as tel, students, staff, address, payload, created_at, \'school\' as type FROM schools ORDER BY created_at DESC').all();
+    const partners = await env.DB.prepare('SELECT id, company as name, email, NULL as tel, interest, message, payload, created_at, \'partner\' as type FROM partners ORDER BY created_at DESC').all();
 
     const allRegistrations = [
       ...(attendees.results ?? []).map((row: any) => ({ ...row, form_type: 'attendee' })),
-      ...(schools.results ?? []).map((row: any) => ({ ...row, form_type: 'school' }))
+      ...(schools.results ?? []).map((row: any) => ({ ...row, form_type: 'school' })),
+      ...(partners.results ?? []).map((row: any) => ({ ...row, form_type: 'partner' }))
     ].sort((a, b) => new Date((b as any).created_at as string).getTime() - new Date((a as any).created_at as string).getTime());
 
     return new Response(JSON.stringify({ success: true, registrations: allRegistrations }), {

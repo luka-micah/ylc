@@ -344,13 +344,20 @@ const SponsorshipModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
       setError('A valid professional email is required');
       return;
     }
+
     setError('');
     setIsSubmitting(true);
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSent(true);
+    try {
+      await submitRegistrationForm({
+        formType: 'partner',
+        payload: formData
+      });
+      setIsSent(true);
+    } catch (err: any) {
+      setError(err?.message || 'Unable to submit partnership request');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   useEffect(() => {

@@ -24,3 +24,14 @@ CREATE TABLE schools (
   payload TEXT,  -- JSON string
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+-- SQL schema for partnership requests
+CREATE TABLE partners (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  company TEXT NOT NULL,
+  email TEXT NOT NULL,
+  interest TEXT NOT NULL,
+  message TEXT,
+  payload TEXT, -- JSON string
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
