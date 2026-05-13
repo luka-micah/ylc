@@ -116,9 +116,9 @@ async function handleRegister(request: Request, env: Env, corsHeaders: Record<st
     const result = await env.DB.prepare(
       'INSERT INTO attendees (name, email, tel, form_type, payload) VALUES (?, ?, ?, ?, ?)'
     ).bind(
-      formType === 'school' ? payload.schoolName : payload.name,
-      formType === 'school' ? null : (payload.email as string),
-      formType === 'school' ? null : (payload.tel as string),
+      formType === 'school' ? String(payload.schoolName || '') : String(payload.name || ''),
+      formType === 'school' ? null : (payload.email ? String(payload.email) : null),
+      formType === 'school' ? null : (payload.tel ? String(payload.tel) : null),
       formType,
       JSON.stringify(payload)
     ).run();

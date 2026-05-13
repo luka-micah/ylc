@@ -97,8 +97,8 @@ async function handleRegister(request, env, corsHeaders) {
       "INSERT INTO attendees (name, email, tel, form_type, payload) VALUES (?, ?, ?, ?, ?)"
     ).bind(
       formType === "school" ? String(payload.schoolName || "") : String(payload.name || ""),
-      formType === "school" ? null : String(payload.email || ""),
-      formType === "school" ? null : String(payload.tel || ""),
+      formType === "school" ? null : payload.email ? String(payload.email) : null,
+      formType === "school" ? null : payload.tel ? String(payload.tel) : null,
       formType,
       JSON.stringify(payload)
     ).run();
@@ -180,7 +180,7 @@ var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "jsonError");
 var middleware_miniflare3_json_error_default = jsonError;
 
-// .wrangler/tmp/bundle-mmBr6w/middleware-insertion-facade.js
+// .wrangler/tmp/bundle-wSoNQK/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_ensure_req_body_drained_default,
   middleware_miniflare3_json_error_default
@@ -212,7 +212,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
 }
 __name(__facade_invoke__, "__facade_invoke__");
 
-// .wrangler/tmp/bundle-mmBr6w/middleware-loader.entry.ts
+// .wrangler/tmp/bundle-wSoNQK/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class ___Facade_ScheduledController__ {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;
