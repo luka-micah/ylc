@@ -1646,7 +1646,7 @@ const FinalCTA = () => {
 
     try {
       await submitRegistrationForm({
-        formType: 'main',
+        formType: 'attendee',
         payload: formData
       });
       setIsSubmitted(true);

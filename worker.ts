@@ -4,8 +4,17 @@ export interface Env {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
+    const origin = request.headers.get('Origin') || '';
+    const allowedOrigins = [
+      'https://ylc-grap.onrender.com',
+      'http://localhost:3000',
+      'http://localhost:3001',
+      'http://127.0.0.1:3000',
+      'http://127.0.0.1:3001'
+    ];
+
     const corsHeaders = {
-      'Access-Control-Allow-Origin': 'https://ylc-grap.onrender.com',
+      'Access-Control-Allow-Origin': allowedOrigins.includes(origin) ? origin : 'https://ylc-grap.onrender.com',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
       'Content-Type': 'application/json'
@@ -29,6 +38,10 @@ export default {
         status: 405,
         headers: corsHeaders
       });
+    }
+
+    if (url.pathname === '/registrations' && request.method === 'GET') {
+      return handleRegistrations(env, corsHeaders);
     }
 
     if ((url.pathname === '/' || url.pathname === '/health') && request.method === 'GET') {
@@ -58,44 +71,57 @@ async function handleRegister(request: Request, env: Env, corsHeaders: Record<st
 
     const { formType, payload } = body as { formType?: string; payload?: Record<string, unknown> };
 
-    if (formType !== 'attendee' || !payload || typeof payload !== 'object') {
+    if (!['attendee', 'school'].includes(formType || '') || !payload || typeof payload !== 'object') {
       return new Response(JSON.stringify({ success: false, message: 'Invalid formType or payload' }), {
         status: 400,
         headers: corsHeaders
       });
     }
 
-    const { name, email, tel } = payload as { name?: string; email?: string; tel?: string };
+    const requiredFields = formType === 'school'
+      ? ['schoolName', 'students', 'staff', 'address']
+      : ['name', 'email', 'tel'];
 
-    if (!name?.trim() || !email?.trim() || !tel?.trim()) {
-      return new Response(JSON.stringify({ success: false, message: 'Missing required fields: name, email, tel' }), {
+    const missingFields = requiredFields.filter((field) => {
+      const value = payload[field];
+      return value === undefined || value === null || String(value).trim() === '';
+    });
+
+    if (missingFields.length) {
+      return new Response(JSON.stringify({ success: false, message: `Missing required fields: ${missingFields.join(', ')}` }), {
         status: 400,
         headers: corsHeaders
       });
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return new Response(JSON.stringify({ success: false, message: 'Invalid email format' }), {
-        status: 400,
-        headers: corsHeaders
-      });
+    if (formType === 'attendee') {
+      const { email } = payload as { email?: string };
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email || '')) {
+        return new Response(JSON.stringify({ success: false, message: 'Invalid email format' }), {
+          status: 400,
+          headers: corsHeaders
+        });
+      }
+
+      const existing = await env.DB.prepare('SELECT id FROM attendees WHERE email = ?').bind(email).first();
+      if (existing) {
+        return new Response(JSON.stringify({ success: false, message: 'Email already registered' }), {
+          status: 409,
+          headers: corsHeaders
+        });
+      }
     }
 
-    // Check for duplicate email
-    const existing = await env.DB.prepare('SELECT id FROM attendees WHERE email = ?').bind(email).first();
-    if (existing) {
-      return new Response(JSON.stringify({ success: false, message: 'Email already registered' }), {
-        status: 409,
-        headers: corsHeaders
-      });
-    }
-
-    // Insert into database
     const result = await env.DB.prepare(
       'INSERT INTO attendees (name, email, tel, form_type, payload) VALUES (?, ?, ?, ?, ?)'
-    ).bind(name, email, tel, formType, JSON.stringify(payload)).run();
+    ).bind(
+      formType === 'school' ? payload.schoolName : payload.name,
+      formType === 'school' ? null : (payload.email as string),
+      formType === 'school' ? null : (payload.tel as string),
+      formType,
+      JSON.stringify(payload)
+    ).run();
 
     if (result.success) {
       return new Response(JSON.stringify({ success: true, message: 'Registration successful' }), {
@@ -111,6 +137,22 @@ async function handleRegister(request: Request, env: Env, corsHeaders: Record<st
   } catch (error) {
     console.error('Registration error:', error);
     return new Response(JSON.stringify({ success: false, message: 'Internal server error' }), {
+      status: 500,
+      headers: corsHeaders
+    });
+  }
+}
+
+async function handleRegistrations(env: Env, corsHeaders: Record<string, string>): Promise<Response> {
+  try {
+    const rows = await env.DB.prepare('SELECT id, name, email, tel, form_type, payload, created_at FROM attendees ORDER BY created_at DESC LIMIT 100').all();
+    return new Response(JSON.stringify({ success: true, registrations: rows.results ?? [] }), {
+      status: 200,
+      headers: corsHeaders
+    });
+  } catch (error) {
+    console.error('Registrations debug error:', error);
+    return new Response(JSON.stringify({ success: false, message: 'Unable to fetch registrations' }), {
       status: 500,
       headers: corsHeaders
     });
