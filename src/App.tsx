@@ -1803,6 +1803,168 @@ const FinalCTA = () => {
   );
 };
 
+const SchoolRegistrationForm = () => {
+  const [formData, setFormData] = useState({
+    schoolName: '',
+    students: '',
+    staff: '',
+    address: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (error) setError('');
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.schoolName.trim()) {
+      setError('Please enter the school name');
+      return;
+    }
+    if (!formData.students.trim() || Number(formData.students) <= 0) {
+      setError('Please enter the number of students');
+      return;
+    }
+    if (!formData.staff.trim() || Number(formData.staff) <= 0) {
+      setError('Please enter the number of staff');
+      return;
+    }
+    if (!formData.address.trim()) {
+      setError('Please enter the school address');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    }, 1200);
+  };
+
+  return (
+    <section className="py-24 bg-zinc-950 border-t border-white/10" id="school-registration">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="rounded-[40px] bg-black/70 border border-white/10 p-10 md:p-14 shadow-2xl backdrop-blur-xl"
+        >
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <span className="text-brand-red uppercase text-[10px] font-black tracking-[0.4em] mb-4 inline-block">School Registration</span>
+            <h2 className="text-4xl md:text-5xl font-display font-black text-white uppercase tracking-tighter">
+              Register Your School for YLC 2026
+            </h2>
+            <p className="text-white/60 mt-5 text-base md:text-lg leading-relaxed">
+              Reserve a place for your school with details for your delegation. We only need a few pieces of information to get started.
+            </p>
+          </div>
+
+          {!isSubmitted ? (
+            <form onSubmit={handleSubmit} className="grid gap-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <label className="space-y-2 text-sm text-white/60">
+                  <span className="font-black uppercase tracking-[0.25em] text-[10px]">School Name</span>
+                  <input
+                    type="text"
+                    name="schoolName"
+                    value={formData.schoolName}
+                    onChange={handleChange}
+                    className="w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/30 focus:border-brand-red focus:outline-none focus:bg-white/10 transition"
+                    placeholder="Enter your school name"
+                    disabled={isSubmitting}
+                  />
+                </label>
+                <label className="space-y-2 text-sm text-white/60">
+                  <span className="font-black uppercase tracking-[0.25em] text-[10px]">Number of Students</span>
+                  <input
+                    type="number"
+                    name="students"
+                    min="1"
+                    value={formData.students}
+                    onChange={handleChange}
+                    className="w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/30 focus:border-brand-red focus:outline-none focus:bg-white/10 transition"
+                    placeholder="e.g. 30"
+                    disabled={isSubmitting}
+                  />
+                </label>
+                <label className="space-y-2 text-sm text-white/60">
+                  <span className="font-black uppercase tracking-[0.25em] text-[10px]">Number of Staff</span>
+                  <input
+                    type="number"
+                    name="staff"
+                    min="1"
+                    value={formData.staff}
+                    onChange={handleChange}
+                    className="w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/30 focus:border-brand-red focus:outline-none focus:bg-white/10 transition"
+                    placeholder="e.g. 5"
+                    disabled={isSubmitting}
+                  />
+                </label>
+                <label className="space-y-2 text-sm text-white/60 md:col-span-2">
+                  <span className="font-black uppercase tracking-[0.25em] text-[10px]">Address</span>
+                  <textarea
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/30 focus:border-brand-red focus:outline-none focus:bg-white/10 transition resize-none"
+                    placeholder="Enter the school address"
+                    disabled={isSubmitting}
+                  />
+                </label>
+              </div>
+
+              {error && (
+                <div className="rounded-3xl border border-brand-red/20 bg-brand-red/10 px-5 py-4 text-brand-red text-sm font-bold">
+                  {error}
+                </div>
+              )}
+
+              <div className="text-center">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full md:w-auto px-12 py-4 rounded-full bg-brand-red text-white font-black uppercase tracking-[0.2em] text-sm hover:bg-white hover:text-black transition-all shadow-2xl disabled:opacity-50"
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit Registration'}
+                </button>
+              </div>
+            </form>
+          ) : (
+            <div className="max-w-3xl mx-auto text-center space-y-8 py-16">
+              <div className="mx-auto w-24 h-24 rounded-full bg-brand-red/10 flex items-center justify-center text-brand-red shadow-2xl">
+                <ShieldCheck size={44} />
+              </div>
+              <div>
+                <h3 className="text-3xl md:text-4xl font-display font-black text-white uppercase tracking-tighter">Registration Received</h3>
+                <p className="text-white/60 mt-4 text-base leading-relaxed">
+                  Thank you! Your school registration has been received. We will contact you shortly with next steps.
+                </p>
+              </div>
+              <button
+                onClick={() => {
+                  setIsSubmitted(false);
+                  setFormData({ schoolName: '', students: '', staff: '', address: '' });
+                }}
+                className="px-12 py-4 rounded-full border border-white/10 text-white font-black uppercase tracking-[0.2em] text-sm hover:bg-white/10 transition"
+              >
+                Register another school
+              </button>
+            </div>
+          )}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 const Footer = () => {
   return (
     <footer className="py-20 bg-black border-t border-white/5">
@@ -2285,6 +2447,7 @@ export default function App() {
       <DonationSection onOpenDonate={() => setIsDonateOpen(true)} />
       <FAQ />
       <FinalCTA />
+      <SchoolRegistrationForm />
       <Footer />
       <WhatsAppButton />
       <BackToTop />
